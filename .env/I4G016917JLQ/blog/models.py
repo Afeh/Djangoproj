@@ -1,10 +1,17 @@
+from datetime import datetime
 from django.db import models
-#from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 class post(models.Model):
-    Title = models.CharField(max_length=200)
-    Text = models.TextField(max_length=200)
-#    Author = get_user_model()
-#    Created_date = models.DateTimeField(auto_now_add=True)
-#    Published_date = models.DateTimeField(auto_now_add=True)
+    Title = models.CharField(max_length=200, null=True, blank=True, default='')
+    Text = models.TextField(null=True, blank=True, default='')
+    Author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default=''
+        )
+    Created_date = models.DateTimeField(default=datetime.now())
+    Published_date = models.DateTimeField(default=datetime.now())
