@@ -14,3 +14,6 @@ class post(models.Model):
         )
     Created_date = models.DateTimeField(default=now)
     Published_date = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return self.Author
